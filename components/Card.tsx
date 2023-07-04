@@ -3,10 +3,10 @@ import Image from "next/image";
 
 //props.children is also a good option for card components in general but since the props are specified in the instructions, I sticked to method below
 type CardProps = {
-  image: string;
+  image?: string; // optional
   title: string;
   description: string;
-  className?: string;
+  className?: string; // optional
 };
 
 export default function Card({
@@ -19,7 +19,7 @@ export default function Card({
     <div
       className={`mx-5 flex max-w-xl flex-col  items-center justify-center gap-5 rounded-lg bg-PRIMARY_BG_COLOR p-5 shadow-lg ${className}`}
     >
-      <Image src={image} alt={title} width={200} height={200} />
+      {image && <Image src={image} alt={title} width={200} height={200} />}
       <div className="grid gap-5 text-center">
         <h2 className="text-xl font-bold">{title}</h2>
         <p className="text-gray-700">{description}</p>
