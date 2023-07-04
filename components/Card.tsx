@@ -6,11 +6,19 @@ type CardProps = {
   image: string;
   title: string;
   description: string;
+  className?: string;
 };
 
-export default function Card({ image, title, description }: CardProps) {
+export default function Card({
+  image,
+  title,
+  description,
+  className,
+}: CardProps) {
   return (
-    <div className="mx-5 flex max-w-xl flex-col items-center justify-center gap-5 rounded-lg bg-PRIMARY_BG_COLOR p-5 px-5 shadow-lg  ">
+    <div
+      className={`mx-5 flex max-w-xl flex-col items-center justify-center gap-5 rounded-lg bg-PRIMARY_BG_COLOR p-5 px-5 shadow-lg ${className}`}
+    >
       <Image src={image} alt={title} width={200} height={200} />
       <div className="grid gap-3 text-center">
         <h2 className="text-xl font-bold">{title}</h2>
