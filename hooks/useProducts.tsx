@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { useStore } from "../store/store";
 
 export function useProducts() {
-  const API_URL = "https://fakestoreapi.com/products";
+  const API_URL = "https://fakestoreapi.com/products"; // no need to use .env for this
   const TEN_SECONDS_IN_MS = 10000;
   const setProducts = useStore((state) => state.setProducts);
 
