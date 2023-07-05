@@ -11,6 +11,7 @@ export default function Data() {
   }
 
   if (isError) {
+    // We can replace the following line with our modal, or a Toast component
     return <p>Something went wrong</p>;
   }
 
