@@ -2,17 +2,26 @@ import { Product } from "@/store/store";
 import Spinner from "@/components/Spinner";
 import { useProducts } from "@/hooks/useProducts";
 import BackButton from "@/components/BackButton";
+import Modal from "@/components/Modal";
+import { useState } from "react";
 
 export default function Data() {
   const { products, isLoading, isError } = useProducts();
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
   if (isLoading) {
     return <Spinner className="absolute inset-0.5" />;
   }
 
   if (isError) {
-    // We can replace the following line with our modal, or a Toast component
-    return <p>Something went wrong</p>;
+    return (
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <div className="grid gap-3 px-3">
+          <h2 className="text-xl font-bold">Error while fetching data!</h2>
+          <p>Something went wrong. Please try again later...</p>
+        </div>
+      </Modal>
+    );
   }
 
   return (
