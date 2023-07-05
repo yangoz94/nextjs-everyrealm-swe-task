@@ -1,7 +1,7 @@
 import React, { ReactNode, useEffect, useRef } from "react";
 
 interface ModalProps {
-  children: ReactNode; // I normally prefe to use props like title, description etc but this is more flexible for the task
+  children: ReactNode; // I normally prefer to use props like title, description etc but this is more flexible for the task
   isOpen: boolean;
   onClose: () => void;
   className?: string;
@@ -41,6 +41,7 @@ export default function Modal({
             className="px-2 text-gray-400 hover:text-gray-600"
             onClick={onClose}
           >
+            {/* X icon to close */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"
