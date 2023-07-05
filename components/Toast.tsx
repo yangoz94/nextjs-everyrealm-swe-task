@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useToast } from "@/hooks/useToast";
 
 type ToastProps = {
   type?: "info" | "success" | "warning" | "error";
@@ -15,28 +15,7 @@ export default function Toast({
   onClose,
   className,
 }: ToastProps) {
-  const [isToastVisible, setIsToastVisible] = useState(isOpen);
-
-  useEffect(() => {
-    setIsToastVisible(isOpen);
-    const timer = setTimeout(() => {
-      setIsToastVisible(false);
-      if (onClose) {
-        onClose();
-      }
-    }, duration);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [isOpen, duration, onClose]);
-
-  const handleClose = () => {
-    setIsToastVisible(false);
-    if (onClose) {
-      onClose();
-    }
-  };
+  const { isToastVisible, handleClose } = useToast(isOpen, duration, onClose);
 
   const toastConfig = {
     info: {
@@ -61,9 +40,9 @@ export default function Toast({
     },
   };
 
-  if (!isToastVisible) return null;
-
   const { color, icon, message } = toastConfig[type];
+
+  if (!isToastVisible) return null;
 
   return (
     <div
