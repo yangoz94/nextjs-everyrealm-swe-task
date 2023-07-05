@@ -51,7 +51,7 @@ export default function Playground() {
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
           <div className="grid gap-3 px-3">
             <h2 className="text-xl font-bold">
-              Hey, I am a Modal Componentasdsadksadskada!
+              Hey, I am a Modal Component!
             </h2>
             <p>Insert some cool content in here</p>
           </div>
