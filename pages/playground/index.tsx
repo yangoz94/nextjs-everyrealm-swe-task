@@ -9,7 +9,9 @@ import Button from "@/components/Button"; // import the button component
 export default function Playground() {
   //useReducer can be considered here as well. Global state would be redundant here.
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [toastType, setToastType] = useState<"info" | "success" | "warning" | "error">("info");
+  const [toastType, setToastType] = useState<
+    "info" | "success" | "warning" | "error"
+  >("info");
   const [isToastVisible, setIsToastVisible] = useState(false);
   const [isSpinnerDisplayed, setIsSpinnerDisplayed] = useState(false);
 
@@ -30,7 +32,7 @@ export default function Playground() {
   };
 
   return (
-    <main className="relative flex min-h-screen flex-col items-center gap-5 py-5">
+    <main className="relative flex min-h-[100svh] flex-col items-center gap-5 py-5">
       <section id="title-navigation">
         <BackButton href="/" className="absolute left-5 top-5" />
         <h1 className="extrabold text-2xl">Playground for Components</h1>
@@ -50,9 +52,7 @@ export default function Playground() {
         <Button onClick={() => setIsModalOpen(true)}>Open Modal</Button>
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
           <div className="grid gap-3 px-3">
-            <h2 className="text-xl font-bold">
-              Hey, I am a Modal Component!
-            </h2>
+            <h2 className="text-xl font-bold">Hey, I am a Modal Component!</h2>
             <p>Insert some cool content in here</p>
           </div>
         </Modal>
