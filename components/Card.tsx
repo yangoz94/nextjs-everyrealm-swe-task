@@ -14,8 +14,7 @@ export default function Card({
   title,
   description,
   className,
-}: //children prop instead of the above is also a good option for card components in general
-CardProps) {
+}: CardProps) {
   return (
     <div
       className={`mx-5 flex max-w-xl flex-col items-center justify-center gap-5 rounded-lg bg-white p-5 shadow-lg ${className}`}
