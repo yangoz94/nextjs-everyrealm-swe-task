@@ -7,15 +7,11 @@ import Spinner from "@/components/Spinner";
 import Button from "@/components/Button"; // import the button component
 
 export default function Playground() {
-  // I would consider useReducer after more than 2 local states if this was a real project
-  const [showModal, setShowModal] = useState(false);
-  const [toastType, setToastType] = useState< "info" | "success" | "warning" | "error" >("info");
+  //useReducer can be considered here as well. Global state would be redundant here.
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [toastType, setToastType] = useState<"info" | "success" | "warning" | "error">("info");
   const [isToastVisible, setIsToastVisible] = useState(false);
   const [isSpinnerDisplayed, setIsSpinnerDisplayed] = useState(false);
-
-  const toggleModal = () => {
-    setShowModal((prev) => !prev);
-  };
 
   const showToast = (type: "info" | "success" | "warning" | "error") => {
     setToastType(type);
@@ -51,16 +47,18 @@ export default function Playground() {
 
       {/* Modal demo */}
       <section id="modal-demo">
-        <Button onClick={toggleModal}>Open Modal</Button>
-        <Modal isOpen={showModal} onClose={toggleModal}>
+        <Button onClick={() => setIsModalOpen(true)}>Open Modal</Button>
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
           <div className="grid gap-3 px-3">
-            <h2 className="text-xl font-bold">Hey, I am a Modal Component!</h2>
+            <h2 className="text-xl font-bold">
+              Hey, I am a Modal Componentasdsadksadskada!
+            </h2>
             <p>Insert some cool content in here</p>
           </div>
         </Modal>
       </section>
 
-      {/* Toast demo - Buttons can be mapped as well */}
+      {/* Toast demo - Buttons can be mapped alternatively */}
       <section className="mx-5 flex gap-3">
         <Button onClick={() => showToast("info")}>Info Toast</Button>
         <Button onClick={() => showToast("success")}>Success Toast</Button>
@@ -72,6 +70,7 @@ export default function Playground() {
           onClose={handleToastClose}
         />
       </section>
+
       {/* Spinner demo */}
       <section id="spinner-demo">
         {isSpinnerDisplayed ? (
