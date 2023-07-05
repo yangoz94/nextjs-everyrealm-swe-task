@@ -26,7 +26,10 @@ export default function Data() {
 
   return (
     <main className="relative flex min-h-[100svh] flex-col items-center justify-center gap-5 p-5">
-      <BackButton href="/" className="absolute left-5 top-5" />
+      <BackButton
+        href="/"
+        className="fixed bottom-5 left-5 md:bottom-auto md:top-5"
+      />
       <h1 className="text-xl font-extrabold">Welcome to the data page!</h1>
       <p>Below you can find all the data fetched with React Query;</p>
       <ul className="grid gap-3">

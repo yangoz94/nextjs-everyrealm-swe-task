@@ -34,7 +34,10 @@ export default function Playground() {
   return (
     <main className="relative flex min-h-[100svh] flex-col items-center gap-5 py-5">
       <section id="title-navigation">
-        <BackButton href="/" className="absolute left-5 top-5" />
+        <BackButton
+          href="/"
+          className="fixed bottom-5 left-5 md:bottom-auto md:top-5"
+        />
         <h1 className="extrabold text-2xl">Playground for Components</h1>
       </section>
 
