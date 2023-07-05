@@ -12,7 +12,7 @@ export default function Home() {
     },
   ];
   return (
-    <main className="grid min-h-screen place-content-center gap-5 bg-PRIMARY_BG_COLOR transition-colors duration-200">
+    <main className="grid min-h-screen place-content-center gap-5 transition-colors duration-200">
       <h1 className="font-mono uppercase tracking-widest hover:text-slate-400">
         Hello, World!
       </h1>
