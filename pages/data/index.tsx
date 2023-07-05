@@ -4,10 +4,15 @@ import { useProducts } from "@/hooks/useProducts";
 import BackButton from "@/components/BackButton";
 import Modal from "@/components/Modal";
 import { useState } from "react";
+import { useStore } from "@/store/store";
+import Button from "@/components/Button";
 
 export default function Data() {
-  const { products, isLoading, isError } = useProducts();
+  const { isLoading, isError } = useProducts();
   const [isModalOpen, setIsModalOpen] = useState(true);
+  const products = useStore((state) => state.products);
+  const removeProduct = useStore((state) => state.removeProduct);
+  const setProducts = useStore((state) => state.setProducts);
 
   if (isLoading) {
     return <Spinner className="absolute inset-0.5" />;
@@ -25,20 +30,36 @@ export default function Data() {
   }
 
   return (
-    <main className="relative flex min-h-[100svh] flex-col items-center justify-center gap-5 p-5">
+    <main className="relative flex min-h-[100svh] flex-col items-center gap-5 p-5">
       <BackButton
         href="/"
         className="fixed bottom-5 left-5 md:bottom-auto md:top-5"
       />
       <h1 className="text-xl font-extrabold">Welcome to the data page!</h1>
       <p>Below you can find all the data fetched with React Query;</p>
-      <ul className="grid gap-3">
-        {(products as Product[]).map((product) => (
-          <li key={product.id} className="before:pr-2 before:content-['✔️']">
-            {product.title} - {product.price}
-          </li>
-        ))}
-      </ul>
+      {products.length === 0 ? (
+        <p>Sorry, no products found...</p>
+      ) : (
+        <ul className="grid min-w-[70%] gap-3">
+          {(products as Product[]).map((product) => (
+            <li
+              key={product.id}
+              className="flex items-center before:pr-2 before:content-['✔️']"
+            >
+              <Button
+                onClick={() => {
+                  removeProduct(product.id);
+                  setProducts(products.filter((p) => p.id !== product.id));
+                }}
+                className="mr-3 bg-red-500 text-white hover:bg-red-600 hover:invert-0 "
+              >
+                Remove
+              </Button>
+              {product.title} - {product.price}
+            </li>
+          ))}
+        </ul>
+      )}
     </main>
   );
 }
