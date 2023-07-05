@@ -14,10 +14,11 @@ export default function Card({
   title,
   description,
   className,
-}: CardProps) {
+}: //children prop instead of the above is also a good option for card components in general
+CardProps) {
   return (
     <div
-      className={`mx-5 flex max-w-xl flex-col  items-center justify-center gap-5 rounded-lg bg-PRIMARY_BG_COLOR p-5 shadow-lg ${className}`}
+      className={`mx-5 flex max-w-xl flex-col items-center justify-center gap-5 rounded-lg bg-white p-5 shadow-lg ${className}`}
     >
       {image && <Image src={image} alt={title} width={200} height={200} />}
       <div className="grid gap-5 text-center">
