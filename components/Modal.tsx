@@ -1,7 +1,8 @@
+// html dialog box would also be great but it has low browser support for now
 import React, { ReactNode, useEffect, useRef } from "react";
 
 interface ModalProps {
-  children: ReactNode; // I normally prefer to use props like title, description etc but this is more flexible for the task
+  children: ReactNode;
   isOpen: boolean;
   onClose: () => void;
   className?: string;
@@ -35,30 +36,16 @@ export default function Modal({
       ref={overlayRef}
       className={`fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 ${className}`}
     >
-      <div className="max-w-lg rounded-lg bg-white p-3 shadow-lg">
-        <div className="flex flex-col items-end">
+      <div className="relative min-h-[150px] min-w-[300px] max-w-lg rounded-lg bg-white p-3 shadow-lg">
+        {children}
+        <div className="absolute bottom-5 right-5 flex flex-col items-end">
           <button
-            className="px-2 text-gray-400 hover:text-gray-600"
+            className="px-2 text-gray-700 hover:text-gray-600"
             onClick={onClose}
           >
-            {/* X icon to close */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
+            Close
           </button>
         </div>
-        {children}
       </div>
     </div>
   );
